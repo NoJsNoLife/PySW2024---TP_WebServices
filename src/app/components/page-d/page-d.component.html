@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-center bg-primary text-white my-4 py-3">
+            <h5 class="m-0">Resumidor de textos</h5>
+        </div>
+    </div>
+    <form [formGroup]="toSummarize" (submit)="summarize()">
+        <div class="form-group">
+            <label for="url">URL</label>
+            <input type="text" id="url" class="form-control" formControlName="url" placeholder="Ingrese una URL a un text que desea resumir">
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="toSummarize.invalid">Resumir</button>
+    </form>
+    <div class="mt-3">
+        <label for="summary">Resumen:</label>
+        <textarea id="summary" class="form-control" readonly rows="8" placeholder="Aquí aparecerá el resumen de la URL que especificó">{{summarizedText}}</textarea>
+    </div>
+    <div class="mt-3">
+        <ol type="I" start="1">
+            <li>Utilizando la API de AI Summarize, podemos resumir textos de cualquier tipo.</li>
+            <li>Ingrese en el input una URL de algún texto a su gusto que desee resumir.</li>
+            <li>Presione el botón "Resumir" para enviar la petición a la API.</li>
+            <li>Se mostrará el resumen en el cuadro de 'textarea'.</li>
+            <p>**Está limitado a 5 resumenes por día**</p>
+        </ol>
+    </div>
+</div>

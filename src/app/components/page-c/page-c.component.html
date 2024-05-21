@@ -1,0 +1,41 @@
+<div class="container-fluid h-75">
+  <mat-grid-list cols="4" rowHeight="3:1">
+    @if (makersFiltered) {
+      @for (maker of makersFiltered; track $index) {
+        <mat-grid-tile>
+          <mat-card  class="btn btn-primary">
+            <button mat-button type="button" class="btn btn-primary" (click)="getModels(maker.id)">
+              <mat-card-header class="d-flex align-items-center">
+                <mat-card-title>{{maker.name}}</mat-card-title>
+              </mat-card-header>
+            </button>
+          </mat-card>
+        </mat-grid-tile>
+      }
+    }
+  </mat-grid-list>
+  <mat-paginator [length]="makers?.length" [pageSizeOptions]="[8,12,16]" (page)="onPageChange($event)"></mat-paginator>
+  <!-- Modal -->
+  @if (mostrarModal) {
+    <div id="modal" style="display: block;" class="modal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modelos disponibles</h5>
+            <button type="button" class="btn-close" (click)="cerrarModal()"></button>
+          </div>
+          <div class="modal-body">
+            @for (model of models; track $index) {
+              <ul class="list-group">
+                <li class="list-group-item">{{model.name}}</li>
+              </ul>
+            }
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="cerrarModal()">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</div>

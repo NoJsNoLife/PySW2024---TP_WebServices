@@ -1,0 +1,21 @@
+textarea {
+    resize: none;
+}
+img {
+    height: 50px;
+    width: 60px;
+}
+img:hover {
+    cursor: pointer;
+    height: 55px;
+    width: 65px;
+}
+.igualar {
+    height: 50px;
+}
+.bordear-izq {
+    border-left: solid 1px;
+}
+.bordear-der {
+    border-right: solid 1px;
+}

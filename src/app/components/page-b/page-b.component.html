@@ -1,0 +1,68 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 text-center bg-primary text-white my-4 py-3">
+            <h5 class="m-0">TRADUCTOR</h5>
+        </div>
+        <div class="col-md-5 bordear-der">
+            <div class="row bg-primary igualar">
+                <div class="col-md-3 text-center">
+                    @if (source != 'en' && target != 'en') {
+                        <img src="assets/USA.png" alt="usa" class="img-fluid" (click)="setSource('en')">
+                    }
+                </div>
+                <div class="col-md-3 text-center">
+                    @if (source != 'ru' && target != 'ru') {
+                        <img src="assets/RUS.png" alt="rus" class="img-fluid" (click)="setSource('ru')">
+                    }
+                </div>
+                <div class="col-md-3 text-center">
+                    @if (source != 'es' && target != 'es') {
+                        <img src="assets/ES.png" alt="es" class="img-fluid" (click)="setSource('es')">
+                    }
+                </div>
+                <div class="col-md-3 text-center">
+                    @if (source != 'ja' && target != 'ja') {
+                        <img src="assets/JPN.png" alt="jpn" class="img-fluid" (click)="setSource('ja')">
+                    }
+                </div>
+            </div>
+            <form [formGroup]="toTranslate" (submit)="translate()">
+                <textarea id="text" class="form-control mt-3" rows="10" placeholder="Introduce el texto que quieras traducir :D" formControlName="text"></textarea>
+            </form>
+        </div>
+        <div class="col-2 text-center flex-column">
+            <button id="translateButton" class="btn btn-primary mt-2 w-50 h-25" (click)="translate()" [disabled]="toTranslate.invalid">Traducir</button>
+            <p class="d-flex justify-content-around">{{source.toUpperCase()}} a {{target.toUpperCase()}}</p>
+            @if (text?.invalid && (text?.dirty || text?.touched)) {
+                <div class="alert alert-danger" role="alert">
+                    Debe ingresar un texto para traducir
+                </div>
+            }
+        </div>
+        <div class="col-md-5 bordear-izq">
+            <div class="row bg-primary igualar">
+                <div class="col-md-3 text-center">
+                    @if (target != 'en' && source != 'en') {
+                        <img src="assets/USA.png" alt="usa" class="img-fluid" (click)="setTarget('en')">
+                    }
+                </div>
+                <div class="col-md-3 text-center">
+                    @if (target != 'ru' && source != 'ru') {
+                        <img src="assets/RUS.png" alt="rus" class="img-fluid" (click)="setTarget('ru')">
+                    }
+                </div>
+                <div class="col-md-3 text-center">
+                    @if (target != 'es' && source != 'es') {
+                        <img src="assets/ES.png" alt="es" class="img-fluid" (click)="setTarget('es')">
+                    }
+                </div>
+                <div class="col-md-3 text-center">
+                    @if (target != 'ja' && source != 'ja') {
+                        <img src="assets/JPN.png" alt="jpn" class="img-fluid" (click)="setTarget('ja')">
+                    }
+                </div>
+            </div>
+            <textarea id="outputText" class="form-control mt-3" rows="10" readonly placeholder="Aquí aparecerá el texto traducido">{{translated}}</textarea>
+        </div>
+    </div>
+</div>
